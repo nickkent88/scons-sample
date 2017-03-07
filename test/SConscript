@@ -1,11 +1,18 @@
 import os
 
-Import('env')
-
 # copy parent environment so our alterations don't affect it
+Import('env')
 env = env.Clone()
 
-# initialize the set of targets to build
+import os
+
+# add src dirs to include path
+for root, dirnames, filenames in os.walk('../../../test'):
+	for dirname in dirnames:
+		dirPath = os.path.join('../src',dirname)
+		env.Append(CPPPATH=[dirPath])
+
+# initilize the set of targets to build
 matches = []
 
 # add any files in the current directory
@@ -15,10 +22,10 @@ matches.append(Glob("./*.c*"))
 
 # add files in subdirectories
 for root, dirnames, filenames in os.walk(os.getcwd()):
-    for dirname in dirnames:
-        env.Append(CPPPATH=[dirname])
-        globStr = "%s/*.c*" % dirname
-        matches.append(Glob(globStr))
+	for dirname in dirnames:
+		env.Append(CPPPATH=[dirname])
+		globStr = "%s/*.c*" % dirname
+		matches.append(Glob(globStr))
 
 # build a program that uses the source files as a shared library
-env.Program('../bin/tests.out', matches)
+env.Program('../bin/test.out', matches)

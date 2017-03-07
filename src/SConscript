@@ -2,14 +2,35 @@ import os
 
 Import('env')
 
-# copy parent environment so our alterations don't affect it
+# # copy parent environment so our alterations don't affect it
 env = env.Clone()
+
+# # add source directories (at all levels) to the include path
+# # and add their contents are build targets
+matches = []
+for root, dirnames, filenames in os.walk('../../../src'):
+    for dirname in dirnames:
+        env.Append(CPPPATH=[dirname])
+    for filename in filenames:
+        if filename.endswith('.cpp') or filename.endswith('.o'):
+            matches.append(filename)
+
+# print('MATCHES (src): {}'.format(matches))
+# # build a shared library
+# env.Program(target='../bin/hello.out', source=matches)
+
+# import os
+
+# copy parent environment so our alterations don't affect it
+# Import('env')
+# env = env.Clone()
 
 # add source directories (at all levels) to the include path
 # and add their contents are build targets
-matches = []
+# matches = []
 for root, dirnames, filenames in os.walk(os.getcwd()):
     for dirname in dirnames:
+        print(root, dirnames, filenames)
         env.Append(CPPPATH=[dirname])
         globStr = "%s/*.c*" % dirname
         matches.append(Glob(globStr))
