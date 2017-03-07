@@ -1,0 +1,24 @@
+import os
+
+Import('env')
+
+# copy parent environment so our alterations don't affect it
+env = env.Clone()
+
+# initialize the set of targets to build
+matches = []
+
+# add any files in the current directory
+currentDir = os.path.split(os.getcwd())[1]
+env.Append(CPPPATH=['.'])
+matches.append(Glob("./*.c*"))
+
+# add files in subdirectories
+for root, dirnames, filenames in os.walk(os.getcwd()):
+    for dirname in dirnames:
+        env.Append(CPPPATH=[dirname])
+        globStr = "%s/*.c*" % dirname
+        matches.append(Glob(globStr))
+
+# build a program that uses the source files as a shared library
+env.Program('../bin/tests.out', matches)

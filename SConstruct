@@ -3,13 +3,17 @@ import os
 
 
 # Set required libraries
-cppPaths            = ['.', 'include', 'usr/local/include']
+cppPaths            = ['.',
+                       'include',
+                       'usr/local/include',
+                       '/usr/include/gtest',
+                       '/usr/include/gdal']
 cppDefines          = {}
 cppFlags            = ['-Wall',
                        '-Wstrict-overflow']
 cxxFlags            = ['-std=c++11']
 libs                = ['libgdal', 'gtest', 'pthread']
-libPaths            = ['/usr/include/gtest', '/usr/include/gdal']
+libPaths            = []#'/usr/include/gtest', '/usr/include/gdal']
 testFlags           = ['-fcatch-undefined-behavior',
                        '-fno-delete-null-pointer-checks',
                        '-fsanitize=address',
@@ -26,7 +30,7 @@ releaseFlags        = ['-O2', '-fwrapv']
 # define the attributes of the build environment shared between
 # both the debug and release builds
 common_env = Environment()
-common_env.Append(LIBS 			= libraries)
+common_env.Append(LIBS 			= libs)
 common_env.Append(LIBPATH 		= libPaths)
 common_env.Append(CPPPATH       = cppPaths)
 common_env.Append(CPPDEFINES 	= cppDefines)
