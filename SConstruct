@@ -11,21 +11,31 @@ cppPaths            = ['.',
 cppDefines          = {}
 cppFlags            = ['-Wall',
                        '-Wextra',
-                       '-pedantic-errors',
+                       '-pedantic',
                        '-Wpointer-arith',
-                       '-Wstrict-overflow',
-                       '-Wsign-compare',
+                    #    '-Wstrict-overflow', included in -Wall
+                    #    '-Wsign-compare', included in -Wall
                        '-Wsign-conversion',
+                       '-Wdiv-by-zero',
+                       '-Wnull-dereference',
+                       '-Wuninitialized',
+
                        ]
 cxxFlags            = ['-std=c++11']
 libs                = ['libgdal', 'gtest', 'pthread']
-libPaths            = []#'/usr/include/gtest', '/usr/include/gdal']
+libPaths            = []
 debugFlags          = ['-fsanitize=float-cast-overflow',
                        '-fstack-check',
+                       '-fsanitize=leak',
+                       '-fsanitize=shift',
+                       '-fsanitize=return',
+                       '-fsanitize=bounds-strict',
+                       '-fsanitize=float-divide-by-zero',
+                    #    The following commented-out lines are broken in Mac OS Sierra
                     #    '-fsanitize=null',
                     #    '-fsanitize=undefined',
                     #    '-fsanitize=vptr',
-                    #    '-fsanitize-recover', # gcc
+                       '-fsanitize-recover', # gcc
                     #    '-fsanitize-recover=undefined', #clang
                     #    '-fsanitize-recover=integer', #clang
                        '-fsanitize=signed-integer-overflow',
