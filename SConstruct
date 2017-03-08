@@ -46,14 +46,14 @@ debugFlags          = ['-fsanitize=float-cast-overflow',
                        '-fsanitize=bounds-strict',
                        '-fsanitize=float-divide-by-zero',
                        '-fsanitize=unreachable',
+                       '-fsanitize-recover', # gcc
+                       '-fsanitize=signed-integer-overflow',
                     #    The following commented-out lines are broken in Mac OS Sierra
                     #    '-fsanitize=null',
                     #    '-fsanitize=undefined',
                     #    '-fsanitize=vptr',
-                       '-fsanitize-recover', # gcc
                     #    '-fsanitize-recover=undefined', #clang
                     #    '-fsanitize-recover=integer', #clang
-                       '-fsanitize=signed-integer-overflow',
                        '-ftrapv',
                        '-pg']
 releaseFlags        = ['-O2', '-fwrapv', '-fno-delete-null-pointer-checks']
