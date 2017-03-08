@@ -10,17 +10,31 @@ cppPaths            = ['.',
                        '/usr/include/gdal']
 cppDefines          = {}
 cppFlags            = ['-Wall',
-                       '-Wextra',
-                       '-pedantic',
-                       '-Wpointer-arith',
-                    #    '-Wstrict-overflow', included in -Wall
-                    #    '-Wsign-compare', included in -Wall
-                       '-Wsign-conversion',
+                       '-Wcast-align',
                        '-Wdiv-by-zero',
+                       '-Wextra',
+                       '-Wfloat-equal',
+                       '-Wframe-address',
+                       '-Wlogical-op',
+                       '-Wmissing-declarations',
                        '-Wnull-dereference',
+                       '-Woverloaded-virtual',
+                       '-Wpointer-arith',
+                       '-Wredundant-decls',
+                       '-Wshadow',
+                       '-Wsign-conversion',
+                       '-Wsuggest-attribute=const',
+                       '-Wsuggest-attribute=noreturn',
+                       '-Wsuggest-attribute=pure',
+                       '-Wswitch',
+                       '-Wswitch-bool',
+                       '-Wswitch-default',
+                       '-Wswitch-enum',
+                       '-Wundef',
                        '-Wuninitialized',
-
-                       ]
+                       '-Wvector-operation-performance',
+                       '-Wwrite-strings',
+                       '-pedantic']
 cxxFlags            = ['-std=c++11']
 libs                = ['libgdal', 'gtest', 'pthread']
 libPaths            = []
@@ -31,6 +45,7 @@ debugFlags          = ['-fsanitize=float-cast-overflow',
                        '-fsanitize=return',
                        '-fsanitize=bounds-strict',
                        '-fsanitize=float-divide-by-zero',
+                       '-fsanitize=unreachable',
                     #    The following commented-out lines are broken in Mac OS Sierra
                     #    '-fsanitize=null',
                     #    '-fsanitize=undefined',
