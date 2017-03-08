@@ -15,16 +15,6 @@ for root, dirnames, filenames in os.walk('../../../src'):
         if filename.endswith('.cpp') or filename.endswith('.o'):
             matches.append(filename)
 
-# print('MATCHES (src): {}'.format(matches))
-# # build a shared library
-# env.Program(target='../bin/hello.out', source=matches)
-
-# import os
-
-# copy parent environment so our alterations don't affect it
-# Import('env')
-# env = env.Clone()
-
 # add source directories (at all levels) to the include path
 # and add their contents are build targets
 # matches = []
