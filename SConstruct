@@ -1,6 +1,4 @@
-# Based on https://github.com/dblalock/scons-example
 import os
-
 
 # Set required libraries
 cppPaths            = ['.',
